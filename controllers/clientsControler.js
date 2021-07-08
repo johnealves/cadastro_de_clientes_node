@@ -8,21 +8,52 @@ const getAllClients = async (request, response) => {
 
 const getAdressByClientId = async (req, res) => {
   const { id } = req.params;
-  const adress = await clientsService.getAdressByClientId(id)
+  const address = await clientsService.getAdressByClientId(id)
 
-  res.status(200).json(adress)
+  res.status(200).json({ address })
 }
 
-const addClient = async (req, res) => {
+const addClient = async (req, res, next) => {
   const { body } = req;
-  const newClient = await clientsService.addClient(body)
+  const response = await clientsService.addClient(body)
+  if (response.err) return next(response)
 
-  return res.status(202).json(newClient)
+  return res.status(201).json(response)
+}
 
+const addAdressByClient = async (req, res, next) => {
+  const { clientId } = req.params;
+  const { body } = req;
+  const response = await clientsService.addAdress(body, clientId);
+
+  if (response.err) return next(response)
+
+  return res.status(201).json(response)
+}
+
+const updateClientById = async (req, res, next) => {
+  const { clientId } = req.params
+  const response = await clientsService.updateClient(clientId, req.body)
+
+  if (response.err) return next(response)
+
+  return res.status(200).json(response)
+}
+
+const updateAddressByAddressId = async (req, res, next) => {
+  const { addressId } = req.params;
+  const response = await clientsService.updateAddress(addressId, req.body)
+
+  if (response.err) return next(response);
+
+  return res.status(200).json(response);
 }
 
 module.exports = {
   getAllClients,
   getAdressByClientId,
   addClient,
+  addAdressByClient,
+  updateClientById,
+  updateAddressByAddressId
 }
