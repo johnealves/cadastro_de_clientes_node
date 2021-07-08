@@ -72,14 +72,11 @@ const addNewAddress = async (body, clientId) => {
 }
 
 const updateClientById = async (clientId, body) => {
-  const { name, document, birthDate } = body;
+  const { name, document, birthDate, status = 'active' } = body;
   const result = await connection.execute(
-    'UPDATE clients SET `name`= (?), cpf_cnpj = (?), birth_date = (?)  WHERE clientId = (?)',
-    [name, document, birthDate, clientId]
+    'UPDATE clients SET `name`= (?), cpf_cnpj = (?), birth_date = (?), status = (?)  WHERE clientId = (?)',
+    [name, document, birthDate, status, clientId]
   );
-  
-
-  console.log(result)
 
   return {
     clientId,
@@ -108,6 +105,14 @@ const updateAddressByAddressId = async (addressId, body) => {
   }
 }
 
+const deletAddressById = async (addressId) => {
+  const result = await connection.execute(
+    'DELETE FROM address WHERE addressId = (?)', [addressId]
+  )
+
+  return {}
+}
+
 module.exports = {
   getAllClients,
   getAdressByClientId,
@@ -118,5 +123,6 @@ module.exports = {
   findClientByName,
   addNewAddress,
   updateClientById,
-  updateAddressByAddressId
+  updateAddressByAddressId,
+  deletAddressById,
 }

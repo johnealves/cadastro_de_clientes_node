@@ -49,11 +49,21 @@ const updateAddressByAddressId = async (req, res, next) => {
   return res.status(200).json(response);
 }
 
+const deleteAddressById = async (req, res, next) => {
+  const { addressId } = req.params;
+  const result = await clientsService.deleteAddress(addressId)
+
+  if (result.err) return next(result);
+
+  return res.status(200).json(result);
+}
+
 module.exports = {
   getAllClients,
   getAdressByClientId,
   addClient,
   addAdressByClient,
   updateClientById,
-  updateAddressByAddressId
+  updateAddressByAddressId,
+  deleteAddressById,
 }

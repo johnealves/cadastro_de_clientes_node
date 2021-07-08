@@ -62,11 +62,20 @@ const updateAddress = async (addressId, body) => {
   return result
 }
 
+const deleteAddress = async (addressId) => {
+  const [findedAddress] = await clientsModel.findAddressById(addressId)
+  if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
+
+  const result = await clientsModel.deletAddressById(addressId)
+  return result
+}
+
 module.exports = {
   getAllClients,
   getAdressByClientId,
   addClient,
   addAdress,
   updateClient,
-  updateAddress
+  updateAddress,
+  deleteAddress,
 }
