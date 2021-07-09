@@ -2,8 +2,23 @@ const connection = require('./connection');
 
 const getAllClients = async () => {
   const [clients] = await connection.execute('SELECT * FROM clients')
+  // const clientsAndAndress = await clients.map(async ({clientId, name, cpf_cnpj, birth_date, status, register}) => {
+  //   const [address] = await connection.execute(
+  //     'SELECT * from address WHERE clientId = (?)', [clientId]
+  //   )
+  //   return {
+  //     clientId,
+  //     name,
+  //     cpf_cnpj,
+  //     birth_date,
+  //     status,
+  //     register,
+  //     address,
+  //   }
+  // })
+  // console.log(clientsAndAndress)
 
-  return clients
+  return clients;
 }
 
 const getAdressByClientId = async (id) => {

@@ -14,7 +14,7 @@ const getAdressByClientId = async (id) => {
 
 const addClient = async (body) => {
   const { name, document } = body;
-  const validate = validadeNewClient(body);
+  const validate = validadeDataClient(body);
   if (validate.message) return validate;
 
   const [findedUser] = await clientsModel.findClientByName(name)
