@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-
+app.get('/', (req, res) => res.send("Cadatro de clientes - Mag It"))
 app.get('/clients', clientsController.getAllClients);
 app.get('/address/:id', clientsController.getAdressByClientId);
 
