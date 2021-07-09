@@ -47,10 +47,11 @@ const findClientByName = async (name) => {
 }
 
 const addClient = async (body) => {
-  const { name, document, birthDate } = body
+  console.log('chegou na model')
+  const { name, document, legal_entity = 'pessoa fisica', birthDate } = body
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO clients (name, cpf_cnpj, birth_date) VALUES (?,?,?)',
-    [name, document, birthDate]
+    'INSERT INTO clients (name, cpf_cnpj, legal_entity birth_date) VALUES (?,?,?)',
+    [name, document, legal_entity, birthDate]
   )
   
   return {
@@ -73,10 +74,10 @@ const addNewAddress = async (body, clientId) => {
 }
 
 const updateClientById = async (clientId, body) => {
-  const { name, document, birthDate, status = 'active' } = body;
+  const { name, document, legal_entity = 'pessoa fisica', birthDate, status = 'active' } = body;
   const result = await connection.execute(
     'UPDATE clients SET `name`= (?), cpf_cnpj = (?), birth_date = (?), status = (?)  WHERE clientId = (?)',
-    [name, document, birthDate, status, clientId]
+    [name, document, legal_entity, birthDate, status, clientId]
   );
 
   return {
