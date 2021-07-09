@@ -18,7 +18,7 @@ app.post('/address/:clientId', clientsController.addAdressByClient)
 app.put('/client/:clientId', clientsController.updateClientById)
 app.put('/address/:addressId', clientsController.updateAddressByAddressId)
 
-//delete
+//delete address by id
 app.delete('/address/:addressId', clientsController.deleteAddressById)
 
 app.use((err, _req, res, _next) => {
