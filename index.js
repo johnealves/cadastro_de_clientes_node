@@ -12,7 +12,7 @@ app.get('/client/:id', clientsController.getClientById)
 app.get('/address/:id', clientsController.getAdressByClientId);
 
 // add data on MagIt.clients
-app.post('/client', clientsController.addClient);
+app.post('/add-client', clientsController.addClient);
 app.post('/address/:clientId', clientsController.addAdressByClient)
 
 // update data

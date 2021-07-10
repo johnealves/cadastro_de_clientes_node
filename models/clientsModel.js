@@ -48,18 +48,18 @@ const findClientByName = async (name) => {
 
 const addClient = async (body) => {
   console.log('chegou na model')
-  const { name, document, legal_entity = 'pessoa fisica', birthDate } = body
+  const { name, cpf_cnpj, legal_entity, birth_date, status } = body
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO clients (name, cpf_cnpj, legal_entity, birth_date) VALUES (?,?,?,?)',
-    [name, document, legal_entity, birthDate]
+    'INSERT INTO clients (name, cpf_cnpj, legal_entity, birth_date, status) VALUES (?, ?, ?, ?, ?)',
+    [name, cpf_cnpj, legal_entity, birth_date, status ]
   )
   
   return {
     clientId: insertId,
     name,
-    document,
-    birthDate,
-    status: 'active',
+    cpf_cnpj,
+    birth_date,
+    status,
   }
 }
 
