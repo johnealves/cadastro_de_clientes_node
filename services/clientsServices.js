@@ -27,7 +27,6 @@ const addClient = async (body) => {
   if (findedUser) return { err: { code: 'invalid_data', message: '"name" already exists' } };
 
   const [findedByDoc] = await clientsModel.findClientByDocument(document);
-  console.log(findedByDoc)
   if (findedByDoc) return { err: { code: 'indalid_document', message: '"CPF/CNPJ" is already in use' } };
 
   const response = await clientsModel.addClient(body);
