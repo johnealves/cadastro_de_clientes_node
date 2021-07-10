@@ -47,19 +47,15 @@ const findClientByName = async (name) => {
 }
 
 const addClient = async (body) => {
-  console.log('chegou na model')
   const { name, cpf_cnpj, legal_entity, birth_date, status } = body
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO heroku_d6b99feac8402e6.clients (name, cpf_cnpj, legal_entity, birth_date, status) VALUES (?, ?, ?, ?, ?)',
-    [name, cpf_cnpj, legal_entity, birth_date, status ]
+    'INSERT INTO clients (name, cpf_cnpj, legal_entity, birth_date, status) VALUES (?, ?, ?, ?, ?)',
+    [name, cpf_cnpj, legal_entity, birth_date, status]
   )
   
   return {
     clientId: insertId,
-    name,
-    cpf_cnpj,
-    birth_date,
-    status,
+    ...body,
   }
 }
 

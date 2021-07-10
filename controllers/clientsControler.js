@@ -1,4 +1,5 @@
 const clientsService = require('../services/clientsServices');
+// const clientsModel = require('')
 
 const getAllClients = async (request, response) => {
   const clients = await clientsService.getAllClients()

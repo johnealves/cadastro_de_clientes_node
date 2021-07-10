@@ -23,11 +23,11 @@ const addClient = async (body) => {
   const validate = validadeDataClient(body);
   if (validate.message) return validate;
 
-  const [findedUser] = await clientsModel.findClientByName(name)
-  if (findedUser) return { err: { code: 'invalid_data', message: '"name" already exists' } };
+  // const [findedUser] = await clientsModel.findClientByName(name)
+  // if (findedUser) return { err: { code: 'invalid_data', message: '"name" already exists' } };
 
-  const [findedByDoc] = await clientsModel.findClientByDocument(cpf_cnpj);
-  if (findedByDoc) return { err: { code: 'indalid_document', message: '"CPF/CNPJ" is already in use' } };
+  // const [findedByDoc] = await clientsModel.findClientByDocument(cpf_cnpj);
+  // if (findedByDoc) return { err: { code: 'indalid_document', message: '"CPF/CNPJ" is already in use' } };
 
   const response = await clientsModel.addClient(body);
 
