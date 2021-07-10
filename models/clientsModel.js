@@ -16,7 +16,7 @@ const getAdressByClientId = async (id) => {
 
 const findClientById = async (clientId) => {
   const [client] = await connection.execute(
-    'SELECT * FROM MagIt.clients WHERE clientId = ?', [clientId]
+    'SELECT * FROM clients WHERE clientId = ?', [clientId]
   )
 
   return client
@@ -50,7 +50,7 @@ const addClient = async (body) => {
   console.log('chegou na model')
   const { name, document, legal_entity = 'pessoa fisica', birthDate } = body
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO clients (name, cpf_cnpj, legal_entity birth_date) VALUES (?,?,?)',
+    'INSERT INTO clients (name, cpf_cnpj, legal_entity, birth_date) VALUES (?,?,?,?)',
     [name, document, legal_entity, birthDate]
   )
   

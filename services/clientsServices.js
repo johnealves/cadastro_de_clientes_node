@@ -8,6 +8,12 @@ const getAllClients = async () => {
   return clients;
 }
 
+const getClientById = async (id) => {
+  const [findedClient] = await clientsModel.findClientById(id)
+
+  return findedClient;
+}
+
 const getAdressByClientId = async (id) => {
   return await clientsModel.getAdressByClientId(id)
 }
@@ -72,6 +78,7 @@ const deleteAddress = async (addressId) => {
 
 module.exports = {
   getAllClients,
+  getClientById,
   getAdressByClientId,
   addClient,
   addAdress,

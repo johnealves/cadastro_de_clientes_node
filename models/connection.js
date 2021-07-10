@@ -16,4 +16,5 @@ const connection = mysql.createPool({
 })
 
 module.exports = connection;
+
 // mysql://b03807ef3ee748:74db8888@us-cdbr-east-04.cleardb.com/heroku_d6b99feac8402e6?reconnect=true

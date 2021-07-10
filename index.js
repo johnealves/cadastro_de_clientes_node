@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.get('/', (req, res) => res.send("Cadatro de clientes - Mag It"))
 app.get('/clients', clientsController.getAllClients);
+app.get('/client/:id', clientsController.getClientById)
 app.get('/address/:id', clientsController.getAdressByClientId);
 
 // add data on MagIt.clients

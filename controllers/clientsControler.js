@@ -6,6 +6,13 @@ const getAllClients = async (request, response) => {
   response.status(200).json(clients)
 }
 
+const getClientById = async (req, res) => {
+  const { id } = req.params;
+  const result = await clientsService.getClientById(id)
+
+  res.status(200).json(result)
+}
+
 const getAdressByClientId = async (req, res) => {
   const { id } = req.params;
   const address = await clientsService.getAdressByClientId(id)
@@ -60,6 +67,7 @@ const deleteAddressById = async (req, res, next) => {
 
 module.exports = {
   getAllClients,
+  getClientById,
   getAdressByClientId,
   addClient,
   addAdressByClient,
