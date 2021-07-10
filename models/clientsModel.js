@@ -74,17 +74,23 @@ const addNewAddress = async (body, clientId) => {
 }
 
 const updateClientById = async (clientId, body) => {
-  const { name, document, legal_entity = 'pessoa fisica', birthDate, status = 'active' } = body;
+  const { name, cpf_cnpj, legal_entity, birth_date, status } = body;
+  console.log(`nome ${name}`)
+  console.log(`cpf_cnpj ${cpf_cnpj}`)
+  console.log(`legal_entity ${legal_entity}`)
+  console.log(`birth_date ${birth_date}`)
+  console.log(`status ${status}`)
   const result = await connection.execute(
-    'UPDATE clients SET `name`= (?), cpf_cnpj = (?), birth_date = (?), status = (?)  WHERE clientId = (?)',
-    [name, document, legal_entity, birthDate, status, clientId]
+    'UPDATE clients SET `name`= (?), cpf_cnpj = (?), legal_entity = (?), birth_date = (?), status = (?)  WHERE clientId = (?)',
+    [name, cpf_cnpj, legal_entity, birth_date, status, clientId]
   );
 
   return {
     clientId,
     name,
-    document,
-    birthDate,
+    cpf_cnpj,
+    legal_entity,
+    birth_date,
   }
 }
 
