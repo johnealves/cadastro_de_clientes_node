@@ -12,15 +12,15 @@ app.use(bodyParser.json());
 
 // client resquests
 app.get('/clients', clientsController.listAll)
-app.get('/client/:clientId', clientsController.getClientById)
-app.post('/addclient', clientsController.addClient)
-app.put('/client/:clientId', clientsController.updateClientById);
+  .get('/client/:clientId', clientsController.getClientById)
+  .post('/addclient', clientsController.addClient)
+  .put('/client/:clientId', clientsController.updateClientById);
 
 // address request
 app.get('/address/:clientId', addressController.listAddressByClientId)
-app.post('/address/:clientId', addressController.addAddressByClient)
-app.put('/address/:addressId', addressController.updateAddressByAddressId)
-app.delete('/address/:addressId', addressController.deleteAddressById);
+  .post('/address/:clientId', addressController.addAddressByClient)
+  .put('/address/:addressId', addressController.updateAddressByAddressId)
+  .delete('/address/:addressId', addressController.deleteAddressById);
 
 app.use((err, _req, res, _next) => {
 
