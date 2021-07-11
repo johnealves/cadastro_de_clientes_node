@@ -6,11 +6,9 @@ const addressController = require('./controllers/addressController');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const route = express.Router();
 
 app.use(express.json());
 app.use(bodyParser.json());
-// app.route('/clients')
 
 // client resquests
 app.get('/client', clientsController.listAll)
