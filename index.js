@@ -25,6 +25,7 @@ app.put('/address/:addressId', clientsController.updateAddressByAddressId)
 //delete address by id
 app.delete('/address/:addressId', clientsController.deleteAddressById)
 
+
 // app.get('/clients', async (req, res, next) => {
 //   const result = await clientsModel.getAllClients();
 

@@ -56,8 +56,8 @@ const updateClient = async (clientId, body) => {
 }
 
 const updateAddress = async (addressId, body) => {
-  const [findedAddress] = await clientsModel.findAddressById(addressId)
-  if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
+  // const [findedAddress] = await clientsModel.findAddressById(addressId)
+  // if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
 
   const validateResult = validateNewAddress(body);
   if (validateResult.message) return validateResult;
@@ -68,8 +68,8 @@ const updateAddress = async (addressId, body) => {
 }
 
 const deleteAddress = async (addressId) => {
-  const [findedAddress] = await clientsModel.findAddressById(addressId)
-  if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
+  // const [findedAddress] = await clientsModel.findAddressById(addressId)
+  // if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
 
   const result = await clientsModel.deletAddressById(addressId)
   return result
