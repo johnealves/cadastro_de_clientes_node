@@ -12,18 +12,18 @@
 // app.get('/', (req, res) => res.send("Cadatro de clientes - Mag It"))
 // // app.get('/clients', clientsController.getAllClients);
 // app.get('/client/:id', clientsController.getClientById)
-// // app.get('/address/:clientId', clientsController.getAdressByClientId);
+// // app.post('/addclient', clientsController.addClient);
+// app.put('/client/:clientId', clientsController.updateClientById)
 
 // // add data on MagIt.clients
-// app.put('/client/:clientId', clientsController.updateClientById)
-// // app.post('/addclient', clientsController.addClient);
+// // app.get('/address/:clientId', clientsController.getAdressByClientId);
 // app.post('/address/:clientId', clientsController.addAdressByClient)
+// app.put('/address/:addressId', clientsController.updateAddressByAddressId)
+// app.delete('/address/:addressId', clientsController.deleteAddressById)
 
 // // update data
-// app.put('/address/:addressId', clientsController.updateAddressByAddressId)
 
 // //delete address by id
-// app.delete('/address/:addressId', clientsController.deleteAddressById)
 
 
 // // app.get('/clients', async (req, res, next) => {

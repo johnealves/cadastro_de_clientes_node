@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // client resquests
 app.get('/clients', clientsController.listAll)
 app.get('/client/:clientId', clientsController.getClientById)
-app.post('/client', clientsController.addClient)
+app.post('/addclient', clientsController.addClient)
 app.put('/client/:clientId', clientsController.updateClientById);
 
 // address request
