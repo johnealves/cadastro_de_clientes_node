@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // client resquests
-app.get('/client', clientsController.listAll)
+app.get('/clients', clientsController.listAll)
 app.get('/client/:clientId', clientsController.getClientById)
 app.post('/client', clientsController.addClient)
 app.put('/client/:clientId', clientsController.updateClientById);
@@ -19,8 +19,8 @@ app.put('/client/:clientId', clientsController.updateClientById);
 // address request
 app.get('/address/:clientId', addressController.listAddressByClientId)
 app.post('/address/:clientId', addressController.addAddressByClient)
-app.put('/address/:clientId/:addressId', addressController.updateAddressByAddressId)
-app.delete('/address/:clientId/:addressId', addressController.deleteAddressById);
+app.put('/address/:addressId', addressController.updateAddressByAddressId)
+app.delete('/address/:addressId', addressController.deleteAddressById);
 
 app.use((err, _req, res, _next) => {
 
