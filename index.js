@@ -26,4 +26,4 @@ app.use((err, _req, res, _next) => {
   res.status(422).json(err)
 })
 
-app.listen(PORT, () => console.log(`listen port ${PORT}`))
+app.listen(PORT, () => console.log(`listen port ${PORT}`));
