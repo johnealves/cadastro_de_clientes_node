@@ -3,8 +3,8 @@ const clientsService = require('../services/clientsServices');
 
 const listAddressByClientId = async (req, res) => {
   try {
-    const { id } = req.params;
-    const address = await clientsService.getAdressByClientId(id)
+    const { clientId } = req.params;
+    const address = await clientsService.getAdressByClientId(clientId)
 
     res.status(200).json({ address })
   } catch (error) {
