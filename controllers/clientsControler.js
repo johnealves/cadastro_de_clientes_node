@@ -2,9 +2,9 @@ const clientsService = require('../services/clientsServices');
 // const clientsModel = require('')
 
 const getAllClients = async (request, response) => {
-  const clients = await clientsService.getAllClients()
+  const data = await clientsService.getAllClients()
 
-  response.status(200).json(clients)
+  response.status(200).json(data)
 }
 
 const getClientById = async (req, res) => {
@@ -15,8 +15,8 @@ const getClientById = async (req, res) => {
 }
 
 const getAdressByClientId = async (req, res) => {
-  const { id } = req.params;
-  const address = await clientsService.getAdressByClientId(id)
+  const { clientId } = req.params;
+  const address = await clientsService.getAdressByClientId(clientId)
 
   res.status(200).json({ address })
 }

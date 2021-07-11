@@ -10,12 +10,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.get('/', (req, res) => res.send("Cadatro de clientes - Mag It"))
-app.get('/clients', clientsController.getAllClients);
+// app.get('/clients', clientsController.getAllClients);
 app.get('/client/:id', clientsController.getClientById)
-app.get('/address/:id', clientsController.getAdressByClientId);
+// app.get('/address/:clientId', clientsController.getAdressByClientId);
 
 // add data on MagIt.clients
-app.post('/addclient', clientsController.addClient);
+// app.post('/addclient', clientsController.addClient);
 app.post('/address/:clientId', clientsController.addAdressByClient)
 
 // update data
