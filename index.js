@@ -1,47 +1,31 @@
 const express = require('express');
-const bodyParser = require("body-parser");
-const clientsController = require('./controllers/clientsControler');
-const { addAdress } = require('./services/clientsServices');
-const clientsModel = require('./models/clientsModel')
+const bodyParser = require('body-parser');
+const clientsController = require('./controllers/clientController');
+const addressController = require('./controllers/addressController');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const route = express.Router();
 
-
+app.use(express.json());
 app.use(bodyParser.json());
-app.get('/', (req, res) => res.send("Cadatro de clientes - Mag It"))
-// app.get('/clients', clientsController.getAllClients);
-app.get('/client/:id', clientsController.getClientById)
-// app.get('/address/:clientId', clientsController.getAdressByClientId);
+// app.route('/clients')
 
-// add data on MagIt.clients
-// app.post('/addclient', clientsController.addClient);
-app.post('/address/:clientId', clientsController.addAdressByClient)
+// client resquests
+app.get('/client', clientsController.listAll)
+  .post('/client', clientsController.addClient)
+  .put('/client/:clientId', clientsController.updateClientById);
 
-// update data
-app.put('/client/:clientId', clientsController.updateClientById)
-app.put('/address/:addressId', clientsController.updateAddressByAddressId)
-
-//delete address by id
-app.delete('/address/:addressId', clientsController.deleteAddressById)
-
-
-// app.get('/clients', async (req, res, next) => {
-//   const result = await clientsModel.getAllClients();
-
-//   res.status(200).json(result)
-// })
-
-// app.post('/client/addclient', async (req, res, next) => {
-//   const { body } = req;
-//   const result = await clientsModel.addClient(body)
-
-//   res.status(200).json(result)
-// })
+// address request
+app.get('/address/:clientId', addressController.listAddressByClientId)
+  .post('/address/:clientId', addressController.addAddressByClient)
+  .put('/address/:clientId/:addressId', addressController.updateAddressByAddressId)
+  .delete('/address/:clientId/:addressId', addressController.deleteAddressById);
 
 app.use((err, _req, res, _next) => {
 
   res.status(422).json(err)
 })
 
-app.listen(PORT, () => console.log(`listen port ${PORT}`));
+app.listen(PORT, () => console.log(`listen port ${PORT}`))

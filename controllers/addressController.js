@@ -12,7 +12,7 @@ const listAddressByClientId = async (req, res) => {
   }
 }
 
-const addAddressByClient = () => {
+const addAddressByClient = async (req, res, next) => {
   try {
     const { clientId } = req.params;
     const { body } = req;
@@ -26,7 +26,7 @@ const addAddressByClient = () => {
   }
 }
 
-const updateAddressByAddressId = () => {
+const updateAddressByAddressId = async (req, res, next) => {
   try {
     const { addressId } = req.params;
     const response = await clientsService.updateAddress(addressId, req.body)
@@ -39,7 +39,7 @@ const updateAddressByAddressId = () => {
   }
 }
 
-const deleteAddressById = () => {
+const deleteAddressById = async (req, res, next) => {
   try {
     const { addressId } = req.params;
     const result = await clientsService.deleteAddress(addressId)
