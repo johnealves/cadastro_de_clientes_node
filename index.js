@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 // client resquests
 app.get('/client', clientsController.listAll)
+  .get('/client/:clientId', clientsController.getClientById)
   .post('/client', clientsController.addClient)
   .put('/client/:clientId', clientsController.updateClientById);
 

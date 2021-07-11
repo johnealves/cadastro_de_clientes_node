@@ -11,6 +11,17 @@ const listAll = async (_req, res) => {
   }
 }
 
+const getClientById = async (req, res, next) => {
+  try {
+    const { clientId } = req.params;
+    const result = await clientsService.getClientById(clientId)
+
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(500).json({ message: 'bad request' })
+  }
+}
+
 const addClient = async (req, res, next) => {
   console.log('chegou no controler')
   try {
@@ -39,6 +50,7 @@ const updateClientById = async (req, res, next) => {
 
 module.exports = {
   listAll,
+  getClientById,
   addClient,
   updateClientById,
 }
