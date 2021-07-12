@@ -45,11 +45,6 @@ const addClient = async (body) => {
 
 const updateClientById = async (clientId, body) => {
   const { name, cpf_cnpj, legal_entity, birth_date, status } = body;
-  console.log(`nome ${name}`)
-  console.log(`cpf_cnpj ${cpf_cnpj}`)
-  console.log(`legal_entity ${legal_entity}`)
-  console.log(`birth_date ${birth_date}`)
-  console.log(`status ${status}`)
   const result = await connection.execute(
     'UPDATE clients SET `name`= (?), cpf_cnpj = (?), legal_entity = (?), birth_date = (?), status = (?)  WHERE clientId = (?)',
     [name, cpf_cnpj, legal_entity, birth_date, status, clientId]

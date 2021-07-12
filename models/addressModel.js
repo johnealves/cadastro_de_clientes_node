@@ -19,7 +19,7 @@ const findAddressById = async (addressId) => {
 const addNewAddress = async (body, clientId) => {
   const {address, num, complement, district, cep, city, state} = body
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO address (address, num, complement, district, CEP, city, state, clientId) VALUES (?,?,?,?,?,?,?,?)',
+    'INSERT INTO address (address, num, complement, district, cep, city, state, clientId) VALUES (?,?,?,?,?,?,?,?)',
     [address, num, complement, district, cep, city, state, clientId]
   )
   
