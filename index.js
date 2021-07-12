@@ -18,6 +18,7 @@ app.get('/clients', clientsController.listAll)
 
 // address request
 app.get('/address/:clientId', addressController.listAddressByClientId)
+  .get('/address/find/:addressId', addressController.getAddressByAddressId)
   .post('/address/:clientId', addressController.addAddressByClient)
   .put('/address/:addressId', addressController.updateAddressByAddressId)
   .delete('/address/:addressId', addressController.deleteAddressById);

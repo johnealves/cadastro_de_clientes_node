@@ -14,10 +14,6 @@ const getClientById = async (id) => {
   return findedClient;
 }
 
-const getAdressByClientId = async (id) => {
-  return await clientsModel.getAdressByClientId(id)
-}
-
 const addClient = async (body) => {
   const { name, cpf_cnpj } = body;
   const validate = validadeDataClient(body);
@@ -34,15 +30,6 @@ const addClient = async (body) => {
   return response
 }
 
-const addAdress = async (body, clientId) => {
-  const validate = validateNewAddress(body)
-  if (validate.err) return validate
-
-  const response = await clientsModel.addNewAddress(body, clientId)
-
-  return response;
-}
-
 const updateClient = async (clientId, body) => {
   const [findedClient] = await clientsModel.findClientById(clientId)
   if(!findedClient) return { err: { code: "invalid_data", message: "wrong clientId format" } }
@@ -55,33 +42,9 @@ const updateClient = async (clientId, body) => {
   return response
 }
 
-const updateAddress = async (addressId, body) => {
-  // const [findedAddress] = await clientsModel.findAddressById(addressId)
-  // if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
-
-  const validateResult = validateNewAddress(body);
-  if (validateResult.message) return validateResult;
-
-  const result = await clientsModel.updateAddressByAddressId(addressId, body)
-
-  return result
-}
-
-const deleteAddress = async (addressId) => {
-  // const [findedAddress] = await clientsModel.findAddressById(addressId)
-  // if(!findedAddress) return { err: { code: "invalid_data", message: "wrong addressId format" } }
-
-  const result = await clientsModel.deletAddressById(addressId)
-  return result
-}
-
 module.exports = {
   getAllClients,
   getClientById,
-  getAdressByClientId,
   addClient,
-  addAdress,
   updateClient,
-  updateAddress,
-  deleteAddress,
 }

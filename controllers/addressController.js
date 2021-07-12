@@ -1,12 +1,25 @@
 const clientsModel = require('../models/clientsModel');
-const clientsService = require('../services/clientsServices');
+const addressService = require('../services/addressServices');
 
 const listAddressByClientId = async (req, res) => {
   try {
     const { clientId } = req.params;
-    const address = await clientsService.getAdressByClientId(clientId)
+    const address = await addressService.getAdressByClientId(clientId)
 
     res.status(200).json({ address })
+  } catch (error) {
+    res.status(500).json({ message: 'bad request' })
+  }
+}
+
+const getAddressByAddressId = async (req, res, next) => {
+  try {
+    const { addressId } = req.params
+    const data = await addressService.findAddress(addressId)
+
+    if (data.err) return next(data);
+
+    res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: 'bad request' })
   }
@@ -16,7 +29,7 @@ const addAddressByClient = async (req, res, next) => {
   try {
     const { clientId } = req.params;
     const { body } = req;
-    const response = await clientsService.addAdress(body, clientId);
+    const response = await addressService.addAdress(body, clientId);
 
     if (response.err) return next(response)
 
@@ -29,7 +42,7 @@ const addAddressByClient = async (req, res, next) => {
 const updateAddressByAddressId = async (req, res, next) => {
   try {
     const { addressId } = req.params;
-    const response = await clientsService.updateAddress(addressId, req.body)
+    const response = await addressService.updateAddress(addressId, req.body)
 
     if (response.err) return next(response);
 
@@ -42,7 +55,7 @@ const updateAddressByAddressId = async (req, res, next) => {
 const deleteAddressById = async (req, res, next) => {
   try {
     const { addressId } = req.params;
-    const result = await clientsService.deleteAddress(addressId)
+    const result = await addressService.deleteAddress(addressId)
 
     if (result.err) return next(result);
 
@@ -54,6 +67,7 @@ const deleteAddressById = async (req, res, next) => {
 
 module.exports = {
   listAddressByClientId,
+  getAddressByAddressId,
   addAddressByClient,
   updateAddressByAddressId,
   deleteAddressById,
